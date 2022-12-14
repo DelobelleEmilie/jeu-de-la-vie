@@ -3,6 +3,11 @@ from random import randrange
 from tkinter import messagebox
 import time
 
+class cellule:
+    def __init__(self):
+        self.vivant = ""
+        self.mort = ""
+
 def plateauJeu():
     # Create a 10x10 grid of labels
     labels = [[tk.Label(root) for _ in range(10)] for _ in range(10)]
