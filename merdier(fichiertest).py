@@ -87,6 +87,20 @@ def update_grid(grid):
                 self.etat = 'Vivante'
                 self.age = 1
         return updated_grid
+def Plateau ():
+    # Initialisation du damier avec x cases
+    grid = [0] * gridsize
+
+    # Boucle qui ajoute 100 cases toutes les secondes
+    for i in range(100):
+        # Ajout des cases au damier
+        grid.append(0)
+        # Affichage du damier
+        print(grid)
+        # Attente d'une seconde avant de continuer la boucle
+        time.sleep(1)
+
+
 
 #On crée la fenêtre principale
 root = tk.Tk()
