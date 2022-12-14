@@ -5,6 +5,26 @@ import time
 import random
 
 
+
+class Couleur:
+    def __init__(self):
+        bleu = (0, 0, 255)
+        jaune = (255, 255, 0)
+        rouge = (255, 0, 0)
+
+    # Fonction qui retourne la couleur à utiliser en fonction de l'âge de la cellule
+    def get_cell_color(self,bleu, rouge, jaune):
+        if age >= 9:
+            return rouge
+        elif age >= 4:
+            return bleu
+        else:
+            return jaune
+    def affichage(self):
+    # Affichage d'une cellule en utilisant la couleur appropriée
+        cell_age = 5
+        cell_color = get_cell_color(cell_age)
+        draw_cell(cell_color)
 class Cellule:
     # Initialisation d'une cellule
     def __init__(self, x, y, etat, age):
