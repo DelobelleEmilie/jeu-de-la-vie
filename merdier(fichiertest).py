@@ -51,6 +51,15 @@ class Cellule:
                 self.etat = 'Vivante'
                 self.age = 1
 
+def ChoixTaille():
+    # Demande à l'utilisateur de choisir la taille de la grille
+    grid_size = int(input("Choisissez la taille de la grille (minimum 10) : "))
+    # Vérifie que la taille choisie est bien supérieure ou égale à 10
+    while grid_size < 10:
+        print("La taille doit être supérieure ou égale à 10.")
+        grid_size = int(input("Choisissez la taille de la grille (minimum 10) : "))
+
+
 
 #On crée la fenêtre principale
 root = tk.Tk()
@@ -68,6 +77,13 @@ label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
 button = tk.Button(root, text="Démarrer le jeu")
 button.pack()
+
+label = Label(root, text="Taille du plateau: ")
+label.pack(side=RIGHT, padx=5)
+verifierBouton = Button(root, text="Valider", command=ChoixTaille)
+verifierBouton.pack(side=LEFT, padx=10)
+TailleEntry = Entry(root)
+TailleEntry.pack(side=LEFT, padx=10 )
 
 menubar = tk.Menu(root)
 filemenu = tk.Menu(menubar, tearoff=0)
