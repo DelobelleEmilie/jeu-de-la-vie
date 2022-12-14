@@ -100,6 +100,33 @@ def Plateau ():
         # Attente d'une seconde avant de continuer la boucle
         time.sleep(1)
 
+def pause():
+    # Initialisation des variables
+    grid = [0] * 10
+    game_paused = False
+
+    # Boucle principale de jeu
+    while True:
+        # Vérifie si le jeu est en pause
+        if game_paused:
+            # Attend une seconde avant de continuer la boucle
+            time.sleep(1)
+            continue
+
+        # Modifie l'état des cellules du damier
+        for i in range(len(grid)):
+            # Si la cellule est vivante, elle meurt à la prochaine itération
+            if grid[i] == 1:
+                grid[i] = 0
+            # Si la cellule est morte, elle passe à l'état de naissance
+            else:
+                grid[i] = 1
+
+        # Affichage du damier
+        print(grid)
+
+        # Attente d'une seconde avant de continuer la boucle
+        time.sleep(1)
 
 
 #On crée la fenêtre principale
@@ -136,5 +163,9 @@ menubar.add_cascade(label="File", )
 helpmenu = tk.Menu(menubar, tearoff=0)
 helpmenu.add_command(label="Régles", command=regles )
 menubar.add_cascade(label="Help", menu=helpmenu)
+
+pausemenu = tk.Menu(menubar, tearoff=0)
+pausemenu.add_command(label="Pause", command=pause )
+menubar.add_cascade(label="Pause", menu=helpmenu)
 root.config(menu=menubar)
 root.mainloop()
