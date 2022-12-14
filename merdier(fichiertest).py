@@ -60,7 +60,8 @@ def ChoixTaille():
         grid_size = int(input("Choisissez la taille de la grille (minimum 10) : "))
 
 def restart():
-    pass
+    global ChoixTaille
+    return ChoixTaille
 
 def regles():
     print("Toute cellule vivante gagne 1 an. \n")
