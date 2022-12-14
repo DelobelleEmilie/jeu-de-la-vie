@@ -33,23 +33,7 @@ class Cellule:
         self.etat = etat
         self.age = random.randint(1,10)
     # Mise à jour de l'état et de l'âge d'une cellule
-    def update(self, voisines_vivantes):
-        # Toute cellule vivante gagne 1 an
-        if self.etat == 'Vivante':
-            self.age += 1
 
-            # Une cellule qui a plus de deux cellules voisines vivantes gagne 1 an supplémentaire par cellule voisine
-            if voisines_vivantes > 2:
-                self.age += voisines_vivantes - 2
-
-            # Une cellule possédant plus de 10 ans meurt
-            if self.age > 10:
-                self.etat = 'Morte'
-        else:
-            # Une cellule morte possédant au moins trois cellules voisines vivantes devient vivante avec un âge de 1 an
-            if voisines_vivantes >= 3:
-                self.etat = 'Vivante'
-                self.age = 1
 
 def ChoixTaille():
     # Demande à l'utilisateur de choisir la taille de la grille
@@ -69,6 +53,40 @@ def regles():
     print("Une cellule possédant plus de 10 ans, meurt et ne peut pas être de nouveau vivante durant la prochaine itération.\n")
     print("Une cellule morte possédant au moins trois cellules voisines vivantes devient vivante avec un âge de 1 an.\n")
     print("Une cellule morte pendant cinq itérations redevient vivante\n")
+
+
+def play_game_of_life(grid, pause_time=1):
+  while True:
+    # afficher la grille actuelle
+    print(grid)
+
+    # appliquer les règles du jeu de la vie
+    updated_grid = update_grid(grid)
+
+    # mettre en pause le jeu pour "pause_time" secondes
+    time.sleep(pause_time)
+
+    # mettre à jour la grille
+    grid = updated_grid
+
+def update_grid(grid):
+        # Toute cellule vivante gagne 1 an
+        if self.etat == 'Vivante':
+            self.age += 1
+
+            # Une cellule qui a plus de deux cellules voisines vivantes gagne 1 an supplémentaire par cellule voisine
+            if voisines_vivantes > 2:
+                self.age += voisines_vivantes - 2
+
+            # Une cellule possédant plus de 10 ans meurt
+            if self.age > 10:
+                self.etat = 'Morte'
+        else:
+            # Une cellule morte possédant au moins trois cellules voisines vivantes devient vivante avec un âge de 1 an
+            if voisines_vivantes >= 3:
+                self.etat = 'Vivante'
+                self.age = 1
+        return updated_grid
 
 #On crée la fenêtre principale
 root = tk.Tk()
