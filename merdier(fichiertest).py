@@ -59,7 +59,15 @@ def ChoixTaille():
         print("La taille doit être supérieure ou égale à 10.")
         grid_size = int(input("Choisissez la taille de la grille (minimum 10) : "))
 
+def restart():
+    pass
 
+def regles():
+    print("Toute cellule vivante gagne 1 an. \n")
+    print(" Une cellule qui a plus de deux cellules voisines vivantes gagne 1 an supplémentaire par cellule voisine. (Si 3 cellules voisines = + 1an, si 4 cellules voisines = + 2 ans, etc …)\n")
+    print("Une cellule possédant plus de 10 ans, meurt et ne peut pas être de nouveau vivante durant la prochaine itération.\n")
+    print("Une cellule morte possédant au moins trois cellules voisines vivantes devient vivante avec un âge de 1 an.\n")
+    print("Une cellule morte pendant cinq itérations redevient vivante\n")
 
 #On crée la fenêtre principale
 root = tk.Tk()
@@ -87,13 +95,13 @@ TailleEntry.pack(side=LEFT, padx=10 )
 
 menubar = tk.Menu(root)
 filemenu = tk.Menu(menubar, tearoff=0)
-filemenu.add_command(label="Redémarrer la partie", )
+filemenu.add_command(label="Redémarrer la partie", command=restart )
 filemenu.add_command(label="Quitter la partie",command=exit )
 filemenu.add_separator()
 filemenu.add_command(label="Exit", )
 menubar.add_cascade(label="File", )
 helpmenu = tk.Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Régles", )
+helpmenu.add_command(label="Régles", command=regles )
 menubar.add_cascade(label="Help", menu=helpmenu)
 root.config(menu=menubar)
 root.mainloop()
