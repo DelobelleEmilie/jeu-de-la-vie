@@ -63,6 +63,7 @@ class GameBoard:
                 #enregistre les valeurs dans un tableau
                 self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
 
+    #chere la taille du tableau
     def print(self):
         alive = 0
         dead = 0
