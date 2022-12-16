@@ -58,8 +58,10 @@ class GameBoard:
         for x in range(self.size):
             self.cellules.append([])
             for y in range(self.size):
-                #la vie est random entre le radio - 1
-                alive = random.random() > (1 - ratio)
+                # (1 -=bool (si ratio = 0.4, 40% de chance d'être True) ratio)
+                #alive = variable
+                #random.random = nombre entre 0 et 1
+                alive = random.random() > \(1 - ratio)
                 #enregistre les valeurs dans un tableau
                 self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
 
@@ -77,7 +79,8 @@ class GameBoard:
                     dead += 1
         print(f"{alive} vivantes et {dead} mortes")
 
-
+def create():
+    win = Toplevel(root)
 
 # On crée la fenêtre principale
 root = tk.Tk()
@@ -95,8 +98,16 @@ label = tk.Label(root, image=image)
 # to position it at the center of the window
 label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
-# button = tk.Button(root, text="Démarrer le jeu", command=plateauJeu)
-# button.pack()
+
+
+
+root = Tk()
+root.geometry('200x100')
+
+btn = Button(root, text="Valider la taille du plateau", command = create, )
+btn.pack(pady = 10)
+
+root.mainloop()
 
 menubar = tk.Menu(root)
 filemenu = tk.Menu(menubar, tearoff=0)
