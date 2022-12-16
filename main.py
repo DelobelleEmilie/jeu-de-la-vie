@@ -6,7 +6,9 @@ import random
 
 
 class Cellule:
+    #valeur vrai faux
     alive: bool
+    #valeur entier
     age: int
 
     def __init__(self, alive: bool, age: int):
@@ -17,6 +19,7 @@ class Cellule:
         alive = ("Vivante", "Morte")[self.alive]
         return f"[{alive} - {self.age}]"
 
+    #ajout d'âge
     def add_age(self, value: int):
         if self.age < 1:
             self.age += 1
@@ -39,6 +42,7 @@ class Cellule:
         return self.alive
 
 
+#damier
 class GameBoard:
     size: int
     cellules: []
@@ -49,7 +53,9 @@ class GameBoard:
         for x in range(self.size):
             self.cellules.append([])
             for y in range(self.size):
+                #la vie est random entre le radio - 1
                 alive = random.random() > (1 - ratio)
+                #enregistre les valeurs dans un tableau
                 self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
 
     def print(self):
