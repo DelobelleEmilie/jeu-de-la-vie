@@ -19,6 +19,7 @@ class Cellule:
         alive = ("Vivante", "Morte")[self.alive]
         return f"[{alive} - {self.age}]"
 
+    #gérer quand la cellule est morte
     #ajout d'âge
     def add_age(self, value: int):
         if self.age < 1:
@@ -28,16 +29,20 @@ class Cellule:
         self.age += value
 
         if self.age >= 10:
+            # age négatif parce qu'on doit compter 5 tours avant de la faire renaitre
             self.age = -5
             self.alive = False
 
+    #fonction naissance
     def born(self):
         self.age = 1
         self.alive = True
 
+    #fonction obtention d'âge
     def get_age(self):
         return self.age
 
+    #fonction de vie
     def is_alive(self):
         return self.alive
 
