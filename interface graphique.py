@@ -18,6 +18,9 @@ label1.place(x = 0, y = 0)
 label2 = Label( root, text = "Welcome")
 label2.pack(anchor= CENTER)
 
+canvas = tk.Canvas(window, width=400, height=400)
+canvas.pack()
+canvas.create_carre(x, x,command = couleur, fill="red")
 
 def create1():
     win = Toplevel(root)
@@ -57,6 +60,7 @@ helpmenu.add_command(label="About...")
 menubar.add_cascade(label="Help", menu=helpmenu)
 
 root.config(menu=menubar)
+
 
 # Execute tkinter
 root.mainloop()

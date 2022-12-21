@@ -123,7 +123,3 @@ def Unpause():
     global paused
     paused = False
 
-window = tk.Tk()
-canvas = tk.Canvas(window, width=400, height=400)
-canvas.pack()
-canvas.create_carre(x, x,command = couleur, fill="red")
