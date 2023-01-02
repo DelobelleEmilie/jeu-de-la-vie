@@ -1,107 +1,51 @@
 import tkinter as tk
 
-class Fenetre1(tk.Tk):
-    def __init__(self):
-        super().__init__()
+# Créez la fenêtre principale
+window = tk.Tk()
 
-        # Chargement de l'image en arrière-plan
-        image = tk.PhotoImage(file="background.png")
+# Créez les widgets Frame pour chaque page
+frame1 = tk.Frame(window, bg="white")
+frame2 = tk.Frame(window, bg="white")
+frame3 = tk.Frame(window, bg="white")
 
-        # Ajout de l'image en tant qu'arrière-plan
-        canvas = tk.Canvas(self, width=200, height=100)
-        canvas.create_image(0, 0, anchor=tk.NW, image=image)
-        canvas.pack()
+# Ajoutez des widgets de texte au widget Frame de chaque page
+label1 = tk.Label(frame1, text="Page 1")
+label1.pack()
 
-        # Ajout d'un bouton pour ouvrir la fenêtre 2
-        bouton = tk.Button(self, text="Ouvrir fenêtre 2", command=self.ouvrir_fenetre2)
-        bouton.pack()
+label2 = tk.Label(frame2, text="Page 2")
+label2.pack()
 
-        # Ajout de texte
-        label = tk.Label(self, text="Fenêtre 1")
-        label.pack()
-        menubar = tk.Menu(root)
-        filemenu = tk.Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Redémarrer la partie", command=restart)
-        filemenu.add_command(label="Quitter la partie", command=exit)
-        filemenu.add_separator()
-        filemenu.add_command(label="Exit", )
-        menubar.add_cascade(label="File", )
-        helpmenu = tk.Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="Régles", command=regles)
-        menubar.add_cascade(label="Help", menu=helpmenu)
+label3 = tk.Label(frame3, text="Page 3")
+label3.pack()
 
-        pausemenu = tk.Menu(menubar, tearoff=0)
-        pausemenu.add_command(label="Pause", command=pause)
-        menubar.add_cascade(label="Pause", menu=helpmenu)
+# Créez une fonction de rappel pour chaque bouton qui affichera la page souhaitée
+def show_frame1():
+    frame1.pack(fill="both", expand=True)
+    frame2.pack_forget()
+    frame3.pack_forget()
 
-class Fenetre2(tk.Tk):
-    def __init__(self):
-        super().__init__()
+def show_frame2():
+    frame1.pack_forget()
+    frame2.pack(fill="both", expand=True)
+    frame3.pack_forget()
 
-        # Chargement de l'image en arrière-plan
-        image = tk.PhotoImage(file="background2.png")
+def show_frame3():
+    frame1.pack_forget()
+    frame2.pack_forget()
+    frame3.pack(fill="both", expand=True)
 
-        # Ajout de l'image en tant qu'arrière-plan
-        canvas = tk.Canvas(self, width=200, height=100)
-        canvas.create_image(0, 0, anchor=tk.NW, image=image)
-        canvazss.pack()
+# Créez les boutons pour passer d'une page à l'autre
+button1 = tk.Button(frame1, text="Page 2", command=show_frame2)
+button1.pack()
 
-        # Ajout d'un bouton pour ouvrir la fenêtre 3
-        bouton = tk.Button(self, text="Ouvrir fenêtre 3", command=self.ouvrir_fenetre3)
-        bouton.pack()
+button2 = tk.Button(frame2, text="Page 3", command=show_frame3)
+button2.pack()
 
-        # Ajout de texte
-        label = tk.Label(self, text="Le jeu se déroule dans une grille à deux dimensions composée de cellules qui peuvent être vivantes  ou mortes. /n Chaque cellule a huit cellules voisines adjacentes (horizontalement, verticalement et diagonalement) et un âge compris entre 1 et 10.À chaque itération, l'état de chaque cellule est déterminé par l'état de ses cellules voisines et de son âge selon les règles suivantes (dans cet ordre de priorité):La cellule gagne 1 an.La cellule gagne 1 an supplémentaire par cellule voisine vivante (par exemple, si elle a 3 cellules voisines vivantes, elle gagne 1 an supplémentaire).Si la cellule a plus de 10 ans, elle meurt et ne peut pas devenir vivante à l'itération suivante. /n Si la cellule est morte et possède au moins trois cellules voisines vivantes, elle devient vivante avec un âge de 1 an. /n Si la cellule est morte pendant 5 itérations, elle redevient vivante.L'interface graphique utilise les couleurs suivantes pour indiquer l'âge de chaque cellule: bleu pour 4 à 8 ans, jaune pour 1 à 3 ans, rouge pour plus de 9 ans.Lors du lancement de l'application, l'utilisateur peut choisir la taille de la grille (qui doit être un carré avec au moins 10 cases sur un côté). 40% des cellules de la grille sont initialisées comme vivantes.")
-        label.pack()
-        menubar = tk.Menu(root)
-        filemenu = tk.Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Redémarrer la partie", command=restart)
-        filemenu.add_command(label="Quitter la partie", command=exit)
-        filemenu.add_separator()
-        filemenu.add_command(label="Exit", )
-        menubar.add_cascade(label="File", )
-        helpmenu = tk.Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="Régles", command=regles)
-        menubar.add_cascade(label="Help", menu=helpmenu)
+button3 = tk.Button(frame3, text="Page 1", command=show_frame1)
+button3.pack()
 
-        pausemenu = tk.Menu(menubar, tearoff=0)
-        pausemenu.add_command(label="Pause", command=pause)
-        menubar.add_cascade(label="Pause", menu=helpmenu)
+# Affichez la première page au démarrage
+show_frame1()
 
-class Fenetre3(tk.Tk):
-    def __init__(self):
-        super().__init__()
-
-
-        # Ajout de texte
-        label = tk.Label(self, text="Fenêtre 3")
-        label.pack()
-        menubar = tk.Menu(root)
-        filemenu = tk.Menu(menubar, tearoff=0)
-        filemenu.add_command(label="Redémarrer la partie", command=restart)
-        filemenu.add_command(label="Quitter la partie", command=exit)
-        filemenu.add_separator()
-        filemenu.add_command(label="Exit", )
-        menubar.add_cascade(label="File", )
-        helpmenu = tk.Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="Régles", command=regles)
-        menubar.add_cascade(label="Help", menu=helpmenu)
-
-        pausemenu = tk.Menu(menubar, tearoff=0)
-        pausemenu.add_command(label="Pause", command=pause)
-        menubar.add_cascade(label="Pause", menu=helpmenu)
-
-        for ligne in range(8):
-            for colonne in range(8):
-                x1 = colonne * taille_case
-                y1 = ligne * taille_case
-                x2 = x1 + taille_case
-                y2 = y1 + taille_case
-                couleur = "white"
-                if (ligne + colonne) % 2 == 0:
-                    couleur = "black"
-                canvas.create_rectangle(x1, y1, x2, y2, fill=couleur)
-
-
-fenetre1 = Fenetre1()
-fenetre1.mainloop()
+# Démarrez la boucle d'événements Tkinter
+window.mainloop()

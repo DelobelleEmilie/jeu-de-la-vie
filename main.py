@@ -61,7 +61,7 @@ class GameBoard:
                 # (1 -=bool (si ratio = 0.4, 40% de chance d'être True) ratio)
                 #alive = variable
                 #random.random = nombre entre 0 et 1
-                alive = random.random() > \(1 - ratio)
+                alive = random.random() < ratio
                 #enregistre les valeurs dans un tableau
                 self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
 
