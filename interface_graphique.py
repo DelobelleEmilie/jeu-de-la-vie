@@ -15,7 +15,6 @@ class GameWindow:
         self.canvas = tk.Canvas(self.root, width=800, height=800)
         self.canvas.pack()
         self.draw()
-        self.root.mainloop()
         self.root.after(1000, self.loop)
         self.root.mainloop()
 
@@ -33,3 +32,18 @@ class GameWindow:
         self.board.update()
         self.draw()
         self.root.after(1000, self.loop)
+
+class SlideBar():
+
+    def __init__(self):
+        self.window = tk.Tk()
+        self.scrollbar = tk.Scale(self.window , from_=10, to=None, orient=tk.HORIZONTAL, resolution=10)
+        self.scrollbar.pack()
+
+    # Créer un bouton pour valider la valeur de la barre de défilement
+    def validate(self):
+        value = self.scrollbar.get()
+        # Lancer une autre page ou exécuter une autre fonction ici en utilisant la valeur
+    def button(self):
+        self.button = tk.Button(self.window , text="Valider", command=validate)
+        self.button.pack()
