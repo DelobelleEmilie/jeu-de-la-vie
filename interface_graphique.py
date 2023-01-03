@@ -36,10 +36,12 @@ class GameWindow:
 
 class SlideBar():
 
-    def __init__(self):
+    def __init__(self,create):
         self.window = tk.Tk()
         self.scrollbar = tk.Scale(self.window , from_=10, to=None, orient=tk.HORIZONTAL, resolution=10)
         self.scrollbar.pack()
+        self.btn = self.Button(self.win, text="Valider", command=create)
+        self.btn.pack(pady=10)
 
     # Créer un bouton pour valider la valeur de la barre de défilement
     def validate(self):
@@ -49,7 +51,5 @@ class SlideBar():
     def create(self):
         self.win = GameWindow(self.board)
         self.value = self.scale.get()
-    def button(self,create):
 
-        self.btn = self.Button(self.win, text="Valider", command=create)
-        self.btn.pack(pady=10)
+
