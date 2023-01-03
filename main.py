@@ -5,5 +5,5 @@ from logique import Cellule, GameBoard
 board = GameBoard(10, 0.4)
 board.print()
 
+win = SlideBar()
 win = GameWindow(board)
-win = SlideBar(board)

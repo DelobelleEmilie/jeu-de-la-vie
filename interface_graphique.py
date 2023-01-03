@@ -2,6 +2,7 @@ import tkinter as tk
 
 from logique import GameBoard
 
+
 class GameWindow:
 
     root : tk.Tk
@@ -42,8 +43,13 @@ class SlideBar():
 
     # Créer un bouton pour valider la valeur de la barre de défilement
     def validate(self):
-        value = self.scrollbar.get()
+        self.value = self.scrollbar.get()
+        self.board = GameBoard( self.value, 0.4)
         # Lancer une autre page ou exécuter une autre fonction ici en utilisant la valeur
-    def button(self):
-        self.button = tk.Button(self.window , text="Valider", command=validate)
-        self.button.pack()
+    def create(self):
+        self.win = GameWindow(self.board)
+        self.value = self.scale.get()
+    def button(self,create):
+
+        self.btn = self.Button(self.win, text="Valider", command=create)
+        self.btn.pack(pady=10)
