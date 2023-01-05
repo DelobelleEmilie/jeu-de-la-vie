@@ -35,8 +35,8 @@ class GameWindow:
         self.control_menu = tk.Menu(self.menubar )
 
         self.menu_bar.add_cascade(label='Control', menu=self.control_menu)
-        self.pause_button = tk.MenuButton(self.control_menu, label='Pause', command=pause)
-        self.control_menu.add_command(label='Pause', command=pause)
+        self.pause_button = tk.MenuButton(self.control_menu, label='Pause', command=self.pause)
+        self.control_menu.add_command(label='Pause', command=self.pause)
 
         self.control_menu.add_command(label='Start', command=start)
         self.root.config(menu=self.menubar )
