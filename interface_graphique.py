@@ -52,20 +52,4 @@ class SlideBar():
         self.win = GameWindow(self.board)
         self.value = self.scale.get()
 
-class menubar():
-    def __init__(self):
-        self.menubar = tk.Menu(self.root)
-        self.filemenu = tk.Menu(menubar, tearoff=0)
-        self.filemenu.add_command(label="Redémarrer la partie", command=self.restart)
-        self.filemenu.add_command(label="Quitter la partie", command=exit)
-        self.filemenu.add_separator()
-        self.filemenu.add_command(label="Exit", )
-        self.menubar.add_cascade(label="File", )
-        self.helpmenu = tk.Menu(menubar, tearoff=0)
-        self.helpmenu.add_command(label="Régles", command=self.regles)
-        self.menubar.add_cascade(label="Help", menu=self.helpmenu)
 
-        self.pausemenu = tk.Menu(menubar, tearoff=0)
-        self.pausemenu.add_command(label="Pause", command=self.pause)
-        self.menubar.add_cascade(label="Pause", menu=self.helpmenu)
-        self.root.config(menu=menubar)
