@@ -4,6 +4,7 @@ from logique import GameBoard
 
 class menubar:
     def __init__(self):
+        self.root = tk.Tk()
         self.menubar = tk.Menu(self.root)
         self.filemenu = tk.Menu(self.menubar, tearoff=0)
         self.filemenu.add_command(label="Redémarrer la partie", command=self.restart)
@@ -17,14 +18,14 @@ class menubar:
 
         self.pausemenu = tk.Menu(self.menubar, tearoff=0)
         self.pausemenu.add_command(label="Pause", command=self.pause)
-        self.menubar.add_cascade(label="Pause", menu=self.helpmenu)
+        self.menubar.add_cascade(label="Pause", menu=self.pausemenu)
         self.control_menu = tk.Menu(self.menubar)
 
-        self.menu_bar.add_cascade(label='Control', menu=self.control_menu)
+        self.menubar.add_cascade(label='Control', menu=self.control_menu)
         self.pause_button = tk.MenuButton(self.control_menu, label='Pause', command=self.pause)
         self.control_menu.add_command(label='Pause', command=self.pause)
 
-        self.control_menu.add_command(label='Start', command=start)
+        self.control_menu.add_command(label='Start', command=self.start)
         self.root.config(menu=self.menubar)
     def start(self):
         # réactivez le bouton pause ici
@@ -51,7 +52,6 @@ class GameWindow():
     canvas: tk.Canvas
 
     def __init__(self, board: GameBoard):
-        global menubar
         self.board = board
         self.root = tk.Tk()
         self.root.geometry("800x800")
@@ -59,48 +59,3 @@ class GameWindow():
         self.canvas.pack()
         self.draw()
         self.root.after(1000, self.loop)
-        self.root.mainloop()
-
-
-    def draw(self):
-        cell_size = 800 / self.board.size
-        for x in range(self.board.size):
-            for y in range(self.board.size):
-                x1 = x * cell_size
-                y1 = y * cell_size
-                x2 = x1 + cell_size
-                y2 = y1 + cell_size
-                self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.board.cellules[x][y].get_color())
-
-    def loop(self):
-        self.board.update()
-        self.draw()
-        self.root.after(1000, self.loop)
-
-
-class SlideBar():
-
-
-    def __init__(self):
-        global menubar
-        self.window = tk.Tk()
-        self.scrollbar = tk.Scale(self.window, from_=10, to=100, orient=tk.HORIZONTAL, resolution=10)
-        self.scrollbar.pack()
-        self.btn = tk.Button(self.window, text="Valider", command=self.create)
-        self.btn.pack(pady=10)
-        self.window.mainloop()
-
-    # Créer un bouton pour valider la valeur de la barre de défilement
-    def validate(self):
-        value = self.scrollbar.get()
-        self.board = GameBoard(value, 0.4)
-        # Lancer une autre page ou exécuter une autre fonction ici en utilisant la valeur
-    def create(self):
-        #recuperer la valeur de la slide bar
-        value = self.scrollbar.get()
-        # crées la board avec la valeur du slider
-        board = GameBoard(int(value), 0.4)
-        #envoies la board à la fenetre de jeu
-        win = GameWindow(board)
-
-
