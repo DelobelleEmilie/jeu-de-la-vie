@@ -67,25 +67,24 @@ class GameBoard:
     size: int
     cellules: []
     paused: bool
+    ratio: float
+    is_ready: bool
 
     def __init__(self, size: int, ratio: float):
         self.size = size
         self.cellules = []
         self.paused = False
-        for x in range(self.size):
-            self.cellules.append([])
-            for y in range(self.size):
-                # (1 -=bool (si ratio = 0.4, 40% de chance d'être True) ratio)
-                # alive = variable
-                # random.random = nombre entre 0 et 1.
-                alive = random.random() > (1 - ratio)
-                # enregistre les valeurs dans un tableau
-                self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
+        self.ratio = ratio
+        self.is_ready = False
+
+        self.generate_cells()
 
     def set_pause(self, paused: bool):
         self.paused = paused
 
     def update(self):
+        if self.paused or not self.is_ready:
+            return
         for x in range(self.size):
             for y in range(self.size):
                 voisines_vivantes = 0
@@ -102,6 +101,34 @@ class GameBoard:
         for x in range(self.size):
             for y in range(self.size):
                 self.cellules[x][y].update()
+
+    def reset(self, callback):
+        self.is_ready = False
+
+        self.clear()
+        self.generate_cells()
+
+        # Appelle la fonction passée en paramètre lorsque le traitement en terminé
+        callback()
+
+    def clear(self):
+        for x in reversed(range(self.size)):
+            for y in reversed(range(self.size)):
+                print(f"Destroy [{x},{y}]")
+                del self.cellules[x][y]
+        self.cellules.clear()
+
+    def generate_cells(self):
+        for x in range(self.size):
+            self.cellules.append([])
+            for y in range(self.size):
+                # (1 -=bool (si ratio = 0.4, 40% de chance d'être True) ratio)
+                # alive = variable
+                # random.random = nombre entre 0 et 1.
+                alive = random.random() > (1 - self.ratio)
+                # enregistre les valeurs dans un tableau
+                self.cellules[x].append(Cellule(alive, (1, 0)[alive]))
+        self.is_ready = True
 
     # chere la taille du tableau
     def print(self):
